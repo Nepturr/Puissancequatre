@@ -5,15 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9e754928-b30a-4560-800d-e51708224ff7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/Puissancequatre.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/checked.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/empty.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guiIA.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/launcher.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/red.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/yellow.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game.py" beforeDir="false" afterPath="$PROJECT_DIR$/Game.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GameIA.py" beforeDir="false" afterPath="$PROJECT_DIR$/GameIA.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +49,8 @@
     "Python.Game.executor": "Run",
     "Python.GameIA.executor": "Run",
     "Python.gui.executor": "Run",
+    "Python.guiIA.executor": "Run",
+    "Python.launcher.executor": "Run",
     "Python.main.executor": "Run",
     "Python.test.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",

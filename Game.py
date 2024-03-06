@@ -7,6 +7,7 @@ class Game:
         self.player1 = player1
         self.player2 = player2
         self.indexActualPlayer = 0
+        self.draw = False
         self.gameEnded = False
         self.tab = np.array([[0, 0, 0, 0, 0, 0, 0],
                         [0, 0, 0, 0, 0, 0, 0],
@@ -15,8 +16,9 @@ class Game:
                         [0, 0, 0, 0, 0, 0, 0],
                         [0, 0, 0, 0, 0, 0, 0]])
         print("Game start !")
-        self.displayTab()
-        self.startGame()
+        # self.displayTab()
+        # self.startGame()
+
 
 
     def startGame(self):
@@ -101,9 +103,12 @@ class Game:
                             self.tab[i + 3][j - 3]:
                         self.gameEnded = True
                         return True
-        if all(self.isFull(col) for col in range(1, 8)):
-            print("Draw ! Restart a game to retry")
+        if self.isFull(1) == True and self.isFull(2) == True and \
+                self.isFull(3) == True and self.isFull(4) == True and \
+                self.isFull(5) == True and self.isFull(6) == True and \
+                self.isFull(7) == True:
             self.gameEnded = True
+            self.draw = True
             return True
         return False
 
@@ -116,3 +121,6 @@ class Game:
         Initialise la class
         """
         print(self.tab)
+
+
+

@@ -1,8 +1,8 @@
 import tkinter as tk
 from tkinter import messagebox
 from PIL import Image, ImageTk
-from Game import Game
-from GameIA import GameIA
+import gui
+import guiIA
 
 def start_game():
     game_type = game_type_var.get()
@@ -14,14 +14,14 @@ def start_game():
         if not player1 or not player2:
             messagebox.showerror("Erreur", "Veuillez entrer les noms des joueurs.")
             return
-        game = Game(player1, player2)
+        root.destroy()
+        gui.start(player1, player2)
     elif game_type == "ia":
         if not player1:
             messagebox.showerror("Erreur", "Veuillez entrer le nom du joueur.")
             return
-        game = GameIA(player1, ia_level)
-
-    game.start()
+        root.destroy()
+        guiIA.start(player1, ia_level)
 
 def toggle_player2_frame():
     if game_type_var.get() == "local":
@@ -44,18 +44,18 @@ def toggle_game_mode():
         player2_frame.grid_remove()
 
 root = tk.Tk()
-root.geometry("800x500")
+root.geometry("350x500")
 root.title("Puissance 4")
 root.iconbitmap("icone.ico")
 root.config(background="#292929")
 
-# Création des images
+
 checked_image = Image.open("checked.png").resize((50, 50))
 unchecked_image = Image.open("notchecked.png").resize((50, 50))
 checked_icon = ImageTk.PhotoImage(checked_image)
 unchecked_icon = ImageTk.PhotoImage(unchecked_image)
 
-game_type_var = tk.StringVar(value="ia")  # "ia" par défaut
+game_type_var = tk.StringVar(value="ia")
 player1_name_var = tk.StringVar()
 player2_name_var = tk.StringVar()
 ia_level_var = tk.IntVar()
@@ -89,7 +89,7 @@ tk.OptionMenu(ia_frame, ia_level_var, *range(1, 4)).pack(side="left")
 start_button = tk.Button(root, text="Commencer la partie", command=start_game, bg="#007ACC", fg="white", font=("Arial", 12, "bold"))
 start_button.grid(row=4, column=0, columnspan=2, pady=10, sticky="ew")
 
-toggle_player2_frame()  # Appel initial pour configurer l'affichage du joueur 2
+toggle_player2_frame()
 
 root.mainloop()
 

@@ -9,6 +9,7 @@ class GameIA:
         self.level = level
         self.indexActualPlayer = 0
         self.gameEnded = False
+        self.draw = False
         self.winner = "IA"
         self.tab = np.array([[0, 0, 0, 0, 0, 0, 0],
                         [0, 0, 0, 0, 0, 0, 0],
@@ -16,9 +17,6 @@ class GameIA:
                         [0, 0, 0, 0, 0, 0, 0],
                         [0, 0, 0, 0, 0, 0, 0],
                         [0, 0, 0, 0, 0, 0, 0]])
-        print("Game start !", "Level ", self.level)
-        self.displayTab()
-        self.startGame()
 
 
     def startGame(self):
@@ -51,23 +49,25 @@ class GameIA:
             self.play(self.indexActualPlayer+1, column, self.tab)
         else:
             if self.level == 1 :
-                while True :
-                    columnIA = randint(1, 7)
-                    if self.isFull(columnIA, self.tab) == False :
-                        break
-                self.play(2, columnIA, self.tab)
+                self.playLevel1()
             elif self.level == 2:
                 self.playLevel2()
             elif self.level == 3:
                 self.playLevel3()
 
+
+    def playLevel1(self):
+        while True:
+            columnIA = randint(1, 7)
+            if self.isFull(columnIA, self.tab) == False:
+                break
+        self.play(2, columnIA, self.tab)
     def playLevel2(self):
         for col in range(1, 8):
             if self.isFull(col, self.tab) == False:
                 temp_tab = np.copy(self.tab)
                 self.play(1, col, temp_tab)
                 if self.verif(temp_tab) == True:
-                    print("win possible pour le player en ", col)
                     self.play(2, col, self.tab)
                     return
                 temp_tab = np.copy(self.tab)
@@ -83,7 +83,6 @@ class GameIA:
                 temp_tab = np.copy(self.tab)
                 self.play(2, col, temp_tab)
                 if self.verif(temp_tab) == True:
-                    print("win possible pour lia en ", col)
                     self.play(2, col, self.tab)
                     return
                 temp_tab = np.copy(self.tab)
@@ -92,7 +91,6 @@ class GameIA:
                 temp_tab = np.copy(self.tab)
                 self.play(1, col, temp_tab)
                 if self.verif(temp_tab) == True:
-                    print("win possible pour le player en ", col)
                     self.play(2, col, self.tab)
                     return
                 temp_tab = np.copy(self.tab)
@@ -102,40 +100,6 @@ class GameIA:
                 break
         self.play(2, columnIA, self.tab)
 
-
-    def verif(self, mat):
-        """
-        Vérifie si le jeu est terminé.
-        """
-        for i in range(mat.shape[0]):
-            for j in range(mat.shape[1]):
-                if mat[i][j] != 0:
-                    # Column
-                    if i <= 2 and mat[i][j] == mat[i + 1][j] == mat[i + 2][j] == mat[i + 3][j]:
-                        if mat[i][j] == 1:
-                            self.winner = self.player1
-                        return True
-                    # Row
-                    if j <= 3 and mat[i][j] == mat[i][j + 1] == mat[i][j + 2] == mat[i][j + 3]:
-                        if mat[i][j] == 1:
-                            self.winner = self.player1
-                        return True
-                    # Diag right
-                    if i <= 2 and j <= 3 and mat[i][j] == mat[i + 1][j + 1] == mat[i + 2][j + 2] == \
-                            mat[i + 3][j + 3]:
-                        if mat[i][j] == 1:
-                            self.winner = self.player1
-                        return True
-                    # Diag left
-                    if i <= 2 and j >= 3 and mat[i][j] == mat[i + 1][j - 1] == mat[i + 2][j - 2] == \
-                            mat[i + 3][j - 3]:
-                        if mat[i][j] == 1:
-                            self.winner = self.player1
-                        return True
-        if all(self.isFull(col, mat) for col in range(1, 8)):
-            print("Draw ! Restart a game to retry")
-            return True
-        return False
 
     def isFull(self, column, mat):
         """
@@ -190,11 +154,8 @@ class GameIA:
             self.isFull(3, mat) == True and self.isFull(4, mat) == True and\
             self.isFull(5, mat) == True and self.isFull(6, mat) == True and\
             self.isFull(7, mat) == True:
-            print("Draw ! Restart a game to retry")
-            if mat is self.tab:
-                self.gameEnded = True
-            return ("Draw")
-
+            self.draw = True
+            return(True)
         return False
 
     def displayTab(self):
